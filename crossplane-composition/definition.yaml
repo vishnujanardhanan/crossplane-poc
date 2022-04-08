@@ -1,0 +1,11 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+spec:
+  group: t0services.sc.com
+  names:
+    kind: t0service
+    plural: t0services
+  versions:
+  - name: v1alpha1
+    referenceable: true
+    served: true
