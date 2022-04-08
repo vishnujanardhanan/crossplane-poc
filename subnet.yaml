@@ -1,0 +1,13 @@
+apiVersion: network.azure.crossplane.io/v1alpha3
+kind: Subnet
+metadata:
+  name: crossplane-poc-test-south-india-subnet
+spec:
+  properties:
+    addressPrefix: 10.0.0.0/25
+  providerConfigRef:
+    name: az-provider-config
+  resourceGroupNameRef:
+    name: crossplane-poc
+  virtualNetworkNameRef:
+    name: crossplane-poc-test-south-india-vnet

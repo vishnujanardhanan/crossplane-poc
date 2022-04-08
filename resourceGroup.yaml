@@ -1,0 +1,8 @@
+apiVersion: azure.crossplane.io/v1alpha3
+kind: ResourceGroup
+metadata:
+  name: crossplane-poc
+spec:
+  location: South India
+  providerConfigRef:
+    name: az-provider-config
