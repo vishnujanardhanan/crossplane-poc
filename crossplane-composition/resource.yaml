@@ -1,0 +1,10 @@
+apiVersion: vj.com/v1alpha1
+kind: t0service
+metadata:
+  name: t0azservices
+  namespace: crossplane-poc-new
+spec:
+  compositionSelector:
+    matchLabels:
+      provider: azure
+      vnet: crossplane-poc-new

@@ -3,9 +3,12 @@ kind: Composition
 metadata:
   name: t0services.vj.com
   namespace: crossplane-poc-new
+  labels:
+    provider: azure
+    vnet: crossplane-poc-new
 spec:
   compositeTypeRef:
-    apiVersion: t0services.vj.com/v1alpha1
+    apiVersion: vj.com/v1alpha1
     kind: Xt0service
   resources:
     - name: crossplane-poc-new
