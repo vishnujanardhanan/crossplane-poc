@@ -1,9 +1,12 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
+metadata:
+  name: t0services.vj.com
+  namespace: crossplane-poc-new
 spec:
   compositeTypeRef:
     apiVersion: t0services.vj.com/v1alpha1
-    kind: t0service
+    kind: Xt0service
   resources:
     - name: crossplane-poc-new
       base:
