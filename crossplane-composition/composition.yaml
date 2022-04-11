@@ -2,7 +2,7 @@ apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 spec:
   compositeTypeRef:
-    apiVersion: t0services.sc.com/v1alpha1
+    apiVersion: t0services.vj.com/v1alpha1
     kind: t0service
   resources:
     - name: crossplane-poc-new
