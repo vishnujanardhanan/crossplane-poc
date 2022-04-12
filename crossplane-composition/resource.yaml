@@ -1,8 +1,8 @@
 apiVersion: vj.com/v1alpha1
-kind: t0service
+kind: claimt0service
 metadata:
   name: t0azservices
-  namespace: crossplane-poc-new
+  namespace: default
 spec:
   compositionSelector:
     matchLabels:

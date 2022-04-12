@@ -1,16 +1,15 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
-  name: xt0services.vj.com
-  namespace: crossplane-poc-new
+  name: crdt0services.vj.com
 spec:
   group: vj.com
   names:
-    kind: Xt0service
-    plural: xt0services
+    kind: crdt0service
+    plural: crdt0services
   claimNames:
-    kind: t0service
-    plural: t0services  
+    kind: claimt0service
+    plural: claimt0services  
   versions:
   - name: v1alpha1
     referenceable: true
