@@ -1,29 +1,41 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
-  name: t0services.vj.com
-  namespace: crossplane-poc-new
+  name: compositiont0services.vj.com
   labels:
     provider: azure
     vnet: crossplane-poc-new
 spec:
   compositeTypeRef:
     apiVersion: vj.com/v1alpha1
-    kind: Xt0service
+    kind: crdt0service
   resources:
-    - name: crossplane-poc-new
-      base:
-        apiVersion: azure.crossplane.io/v1alpha3
-        kind: ResourceGroup
-        spec:
-          location: South India
-    - name: crossplane-poc-test-south-india-vnet-new
+    - name: vnet
       base:
         apiVersion: network.azure.crossplane.io/v1alpha3
         kind: VirtualNetwork
         spec:
+          resourceGroupNameSelector:
+            matchControllerRef: true
+            matchLabels:
+              provider: azure
+              vnet: crossplane-poc-new
           location: South India
+          providerConfigRef:
+            name: az-provider-config
           properties:
             addressSpace:
               addressPrefixes:
                 - 10.2.0.0/24
+    - name: resourcegroup
+      base:
+        apiVersion: azure.crossplane.io/v1alpha3
+        kind: ResourceGroup
+        metadata:
+          labels:
+            provider: azure
+            vnet: crossplane-poc-new
+        spec:
+          location: South India
+          providerConfigRef:
+            name: az-provider-config
