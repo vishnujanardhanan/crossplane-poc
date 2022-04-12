@@ -1,0 +1,9 @@
+apiVersion: azure.crossplane.io/v1alpha3
+kind: Provider
+metadata:
+  name: az-provider
+spec:
+  credentialsSecretRef:
+    name: az-account-creds
+    namespace: crossplane-system
+    key: credentials

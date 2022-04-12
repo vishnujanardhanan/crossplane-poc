@@ -14,6 +14,10 @@ spec:
       base:
         apiVersion: network.azure.crossplane.io/v1alpha3
         kind: VirtualNetwork
+        metadata:
+          labels:
+            provider: azure
+            vnet: crossplane-poc-new
         spec:
           resourceGroupNameSelector:
             matchControllerRef: true
@@ -39,3 +43,27 @@ spec:
           location: South India
           providerConfigRef:
             name: az-provider-config
+    - name: subnet
+      base:
+        apiVersion: network.azure.crossplane.io/v1alpha3
+        kind: Subnet
+        metadata:
+          labels:
+            provider: azure
+            vnet: crossplane-poc-new
+        spec:
+          resourceGroupNameSelector:
+            matchControllerRef: true
+            matchLabels:
+              provider: azure
+              vnet: crossplane-poc-new
+          virtualNetworkNameSelector:
+            matchControllerRef: true
+            matchLabels:
+              provider: azure
+              vnet: crossplane-poc-new
+          location: South India
+          providerConfigRef:
+            name: az-provider-config
+          properties:
+            addressPrefix: 10.2.0.0/25
