@@ -67,3 +67,58 @@ spec:
             name: az-provider-config
           properties:
             addressPrefix: 10.2.0.0/25
+    - name: vm
+      base:
+        apiVersion: compute.azure.jet.crossplane.io/v1alpha1
+        kind: LinuxVirtualMachine
+        metadata:
+          labels:
+            provider: azure
+            vnet: crossplane-poc-new
+        spec:
+          providerConfigRef:
+            name: az-provider-config
+          forProvider:
+            adminUserName: azuser
+            location: South India
+            name: vm
+            networkInterfaceIds: ====
+            osDisk:
+              caching: ReadWrite
+              storageAccountType: Standard_LRS
+              diskSizeGb: 4
+            size: Standard_B1s
+          resourceGroupNameSelector:
+            matchControllerRef: true
+            matchLabels:
+              provider: azure
+              vnet: crossplane-poc-new
+    - name: nic
+      base:
+        apiVersion: compute.azure.jet.crossplane.io/v1alpha2
+        kind: NetworkInterface
+        metadata:
+          labels:
+            provider: azure
+            vnet: crossplane-poc-new
+        spec:
+          providerConfigRef:
+            name: az-provider-config
+          forProvider:
+            ipConfiguration:
+              - name: aznic
+                privateIpAddressAllocation: Dynamic
+                subnetIdselector:
+                  matchControllerRef: true
+                  matchLabels:
+                    provider: azure
+                    vnet: crossplane-poc-new                
+            location: South India
+            name: vm
+          resourceGroupNameSelector:
+            matchControllerRef: true
+            matchLabels:
+              provider: azure
+              vnet: crossplane-poc-new
+
+          
